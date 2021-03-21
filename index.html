@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>App of ML Algorithm</title>
+        <style>
+            body{
+                background-color: white;
+                background-image: url("https://www.flighttimecalculator.org/wp-content/uploads/2019/08/flight-time-calculator.png");
+                background-repeat: no-repeat;
+                background-position: left;
+                font: 1em/1.5 sans-serif;
+            }
+            h1{
+                text-align: center;
+                color: steelblue;
+                font-size: 35px;
+            }
+            form{
+                width: 200px;
+                margin: auto;
+            }
+            input{
+                padding: 5px;
+                border-radius: 5px;
+            }
+            input[type = "number"]{
+                margin-bottom: 15px;
+                width: 95%;
+                border: 2px solid steelblue;
+                background: #FAF6D9;
+            }
+            input:focus{
+                background: white;
+            }
+            select{
+                padding: 4px;
+                border-radius: 5px;
+            }
+            select{
+                margin-bottom: 15px;
+                width: 102%;
+                border: 2px solid steelblue;
+                background: #FAF6D9;
+            }
+            select:focus{
+                background: white;
+            }
+            button[type = "submit"]{
+                width: 204px;
+                height: 40px;
+                border: 2px solid black;
+                background: steelblue;
+                color: white;
+                border-radius: 5px;
+            }
+            button[type = "submit"]:focus{
+                width: 204px;
+                height: 40px;
+                border: 2px solid black;
+                background: white;
+                color: steelblue;
+            }
+            div{
+                text-align: center;
+                margin-top: 20px;
+                font-size: 20px;
+                color: blue;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Flight Delay Prediction</h1>
+        <form action="{{ url_for('y_predict')}}" method="POST">
+            <input type="number" name="fl_num" placeholder="Flight Number">
+            <select name="origin_airport">
+                <option value = "NONE">Origin Airport</option>
+                <option value = "ATL">ATL</option>
+                <option value = "DTW">DTW</option>
+                <option value = "SEA">SEA</option>
+                <option value = "MSP">MSP</option>
+                <option value = "JFK">JFK</option>
+            </select>
+            <input type="number" name="month" placeholder="Month">
+            <input type="number" name="day_of_month" placeholder="Day of Month">
+            <input type="number" name="day_of_week" placeholder="Day of Week">
+            <input type="number" name="crs_dep_time" placeholder="Scheduled Departure Time">
+            <input type="number" name="dep_time" placeholder="Actual Departure Time">
+            <select name="dest_airport">
+                <option value = "NONE">Destination Airport</option>
+                <option value = "ATL">ATL</option>
+                <option value = "DTW">DTW</option>
+                <option value = "SEA">SEA</option>
+                <option value = "MSP">MSP</option>
+                <option value = "JFK">JFK</option>
+            </select>
+            <input type="number" name="crs_arr_time" placeholder="Scheduled Arrival Time">
+            <button type="submit">PREDICT</button>
+        </form>
+        <div>
+            {{prediction_text}}
+        </div>
+        
+    </body>
+</html>
